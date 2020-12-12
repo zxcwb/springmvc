@@ -34,7 +34,7 @@ public class MyController {
 
 
      */
-    @RequestMapping(value = "/some.do")
+    @RequestMapping(value = {"/some.do","/first.do"})
     public ModelAndView doSome(){//doGet---service请求处理
         //处理some.do的请求，调用service请求处理完成
         ModelAndView modelAndView = new ModelAndView();
@@ -52,6 +52,15 @@ public class MyController {
         //框架会使用视图解析器的前缀+逻辑名称+后缀 组成完成路径，这里就是字符连接操作
         // /WEB-INF/view/+show+jsp
         modelAndView.setViewName("show");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = {"/other.do","/second.do"})
+    public ModelAndView doOther(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("msg","欢迎使用springmvc做web开发");
+        modelAndView.addObject("fun","执行的是doOther方法");
+        modelAndView.setViewName("other");
         return modelAndView;
     }
 }
